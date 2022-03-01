@@ -21,8 +21,8 @@ class BuzzWidgetUtils {
 
     final result = <Widget>[];
 
-    for(int i = 0; i < children.length * 2 - 1; i++){
-      if(i.isEven) {
+    for (int i = 0; i < children.length * 2 - 1; i++) {
+      if (i.isEven) {
         result.add(children.elementAt(i ~/ 2));
       } else {
         result.add(sizeBox);
@@ -30,4 +30,5 @@ class BuzzWidgetUtils {
     }
 
     return result;
+  }
 }
