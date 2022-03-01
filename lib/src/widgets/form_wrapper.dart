@@ -33,13 +33,11 @@ class BuzzFormWrapper extends StatelessWidget {
       },
     );
 
-    return submitWidget != null
+    return submitWidget == null
         ? _form
         : Column(
             children: [
-              Expanded(
-                child: _form,
-              ),
+              Expanded(child: _form),
               submitWidget!,
             ],
           );
