@@ -7,22 +7,27 @@ class BuzzWidgetUtils {
     final double? vertical,
     final double? horizontal,
   }) {
-    if(children == null) {
+    if (children == null) {
       return [];
     }
 
-    return children
-            .map(
-              (e) => Padding(
-                padding: all != null
-                    ? EdgeInsets.all(all)
-                    : EdgeInsets.symmetric(
-                        vertical: vertical ?? 0,
-                        horizontal: horizontal ?? 0,
-                      ),
-                child: e,
-              ),
-            )
-            .toList();
-  }
+    final _vertical = all ?? vertical;
+    final _horizontal = all ?? horizontal;
+
+    final sizeBox = SizedBox(
+      height: _vertical ?? 0,
+      width: _horizontal ?? 0,
+    );
+
+    final result = <Widget>[];
+
+    for(int i = 0; i < children.length * 2 - 1; i++){
+      if(i.isEven) {
+        result.add(children.elementAt(i ~/ 2));
+      } else {
+        result.add(sizeBox);
+      }
+    }
+
+    return result;
 }
