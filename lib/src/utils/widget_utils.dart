@@ -6,6 +6,7 @@ class BuzzWidgetUtils {
     final double? all,
     final double? vertical,
     final double? horizontal,
+    final Widget? separator,
   }) {
     if (children == null) {
       return [];
@@ -14,7 +15,7 @@ class BuzzWidgetUtils {
     final _vertical = all ?? vertical;
     final _horizontal = all ?? horizontal;
 
-    final sizeBox = SizedBox(
+    final _separator = separator ?? SizedBox(
       height: _vertical ?? 0,
       width: _horizontal ?? 0,
     );
@@ -25,7 +26,7 @@ class BuzzWidgetUtils {
       if (i.isEven) {
         result.add(children.elementAt(i ~/ 2));
       } else {
-        result.add(sizeBox);
+        result.add(_separator);
       }
     }
 
