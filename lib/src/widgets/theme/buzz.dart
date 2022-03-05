@@ -11,9 +11,9 @@ class Buzz {
 
   factory Buzz.of(final BuzzTheme theme) => Buzz._(theme);
 
-  Widget formWrapper(
-      Key? key,
-    List<Widget> children,
+  Widget formWrapper({
+    Key? key,
+    List<Widget>? children = const [],
     Widget? submitWidget,
     Key? formKey,
     VoidCallback? onSubmit,
@@ -21,7 +21,7 @@ class Buzz {
     String? submitText,
     String? cancelText,
     double? spaceBetween,
-  ) =>
+  }) =>
       BuzzFormWrapper(
         key: key,
         children: children,
