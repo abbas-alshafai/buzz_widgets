@@ -1,7 +1,8 @@
 class BuzzTheme{
 
-  final double? hSpace;
+  final double? verticalSpace;
+  final double? horizontalSpace;
 
 
-  BuzzTheme({this.hSpace = 16});
+  BuzzTheme({this.horizontalSpace = 16, this.verticalSpace = 8});
 }
