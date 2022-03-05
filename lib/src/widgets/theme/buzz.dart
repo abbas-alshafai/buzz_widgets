@@ -27,7 +27,7 @@ class Buzz {
         children: children,
         submitWidget: submitWidget,
         formKey: formKey,
-        spaceBetween: theme.hSpace,
+        horizontalSpace: theme.hSpace,
         onSubmit: onSubmit,
         onCancel: onCancel,
         submitText: submitText,

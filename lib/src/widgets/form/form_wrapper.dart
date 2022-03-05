@@ -2,6 +2,8 @@ import 'package:buzz_widgets/src/widgets/buttons/submit_cancel_buttons.dart';
 import 'package:buzz_widgets/src/widgets/form/form.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/widget_utils.dart';
+
 class BuzzFormWrapper extends StatelessWidget {
   const BuzzFormWrapper({
     Key? key,
@@ -12,7 +14,8 @@ class BuzzFormWrapper extends StatelessWidget {
     this.onCancel,
     this.submitText,
     this.cancelText,
-    this.spaceBetween,
+    this.horizontalSpace,
+    this.verticalSpace,
   })  : children = children ?? const [],
         super(key: key);
 
@@ -24,7 +27,8 @@ class BuzzFormWrapper extends StatelessWidget {
   final VoidCallback? onCancel;
   final String? submitText;
   final String? cancelText;
-  final double? spaceBetween;
+  final double? horizontalSpace;
+  final double? verticalSpace;
 
   @override
   Widget build(BuildContext context) {
@@ -32,22 +36,25 @@ class BuzzFormWrapper extends StatelessWidget {
         onCancel == null &&
         submitText == null &&
         cancelText == null &&
-        spaceBetween == null;
+        horizontalSpace == null;
 
-    final _submitWidget = submitWidget ?? (isEmptySubmit
-        ? null
-        : BuzzSubmitCancelButtons(
-      onSubmit: onSubmit,
-      onCancel: onCancel,
-      submitText: submitText,
-      cancelText: cancelText,
-      spaceBetween: spaceBetween,
-    ));
-
+    final _submitWidget = submitWidget ??
+        (isEmptySubmit
+            ? null
+            : BuzzSubmitCancelButtons(
+                onSubmit: onSubmit,
+                onCancel: onCancel,
+                submitText: submitText,
+                cancelText: cancelText,
+                spaceBetween: horizontalSpace,
+              ));
 
     final form = BuzzForm(
       formKey: formKey,
-      children: children,
+      children: BuzzWidgetUtils.addSpaces(
+        vertical: verticalSpace,
+        children: children,
+      ),
     );
 
     return _submitWidget == null
