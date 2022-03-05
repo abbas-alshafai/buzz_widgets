@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SubmitCancelButtons extends StatelessWidget {
-  const SubmitCancelButtons({
+class BuzzSubmitCancelButtons extends StatelessWidget {
+  const BuzzSubmitCancelButtons({
     Key? key,
     this.onSubmit,
     this.onCancel,
