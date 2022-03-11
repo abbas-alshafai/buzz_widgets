@@ -72,10 +72,10 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
                             result,
                             onSuccess: onSuccess,
                             onError: onError,
-                            isError: result.hasFailed,
                             errorMsg: errorMsg,
                             onErrorColor: onErrorColor,
                             errorColor: errorColor,
+                            isError: result.hasFailed,
                           );
                         }
                       }),

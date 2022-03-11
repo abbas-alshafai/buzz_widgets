@@ -8,9 +8,14 @@ class BuzzTheme {
   final Color? error;
   final Color? onError;
 
+  // padding
+  final double scaffoldPadding;
+
+
   BuzzTheme({
     this.horizontalSpace = 16,
     this.verticalSpace = 8,
+    this.scaffoldPadding = 8,
     this.error,
     this.onError,
   });

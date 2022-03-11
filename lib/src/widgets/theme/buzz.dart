@@ -25,6 +25,7 @@ class Buzz {
     final String? submitText,
     final String? cancelText,
     final double? spaceBetween,
+    final double? submitWidgetPadding,
     final String? errorMsg,
     final GetValueCallback<Result>? onResult,
     final GetValueCallback<Future<Result>>? onRemoteResult,
@@ -45,5 +46,6 @@ class Buzz {
         errorMsg: errorMsg,
         onResult: onResult,
         onRemoteResult: onRemoteResult,
+        submitWidgetPadding: submitWidgetPadding,
       );
 }

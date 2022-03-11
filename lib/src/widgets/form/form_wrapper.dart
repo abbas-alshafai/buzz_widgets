@@ -24,6 +24,7 @@ class BuzzFormWrapper extends StatelessWidget {
     this.errorColor,
     this.onResult,
     this.onRemoteResult,
+    this.submitWidgetPadding,
   })  : children = children ?? const [],
         super(key: key);
 
@@ -43,6 +44,8 @@ class BuzzFormWrapper extends StatelessWidget {
   final String? cancelText;
   final double? horizontalSpace;
   final double? verticalSpace;
+
+  final double? submitWidgetPadding;
 
   final GetValueCallback<Result>? onResult;
   final GetValueCallback<Future<Result>>? onRemoteResult;
@@ -82,7 +85,10 @@ class BuzzFormWrapper extends StatelessWidget {
         : Column(
             children: [
               Expanded(child: form),
-              _submitWidget,
+              submitWidgetPadding == null ? _submitWidget : Padding(
+                padding: EdgeInsets.all(submitWidgetPadding!),
+                child: _submitWidget,
+              ),
             ],
           );
   }
