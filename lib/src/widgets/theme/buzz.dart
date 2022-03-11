@@ -47,5 +47,6 @@ class Buzz {
         onResult: onResult,
         onRemoteResult: onRemoteResult,
         submitWidgetPadding: submitWidgetPadding,
+
       );
 }
