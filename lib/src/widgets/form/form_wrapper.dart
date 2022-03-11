@@ -1,3 +1,5 @@
+import 'package:buzz_result/models/result.dart';
+import 'package:buzz_utils/buzz_utils.dart';
 import 'package:buzz_widgets/src/widgets/buttons/submit_cancel_buttons.dart';
 import 'package:buzz_widgets/src/widgets/form/form.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,8 @@ class BuzzFormWrapper extends StatelessWidget {
     this.errorMsg,
     this.error,
     this.onError,
+    this.onResult,
+    this.onRemoteResult,
   })  : children = children ?? const [],
         super(key: key);
 
@@ -37,6 +41,9 @@ class BuzzFormWrapper extends StatelessWidget {
   final double? horizontalSpace;
   final double? verticalSpace;
 
+  final GetValueCallback<Result>? onResult;
+  final GetValueCallback<Future<Result>>? onRemoteResult;
+
   @override
   Widget build(BuildContext context) {
     final isEmptySubmit = onSubmit == null &&
@@ -49,6 +56,8 @@ class BuzzFormWrapper extends StatelessWidget {
         (isEmptySubmit
             ? null
             : BuzzSubmitCancelButtons(
+                onResult: onResult,
+                onRemoteResult: onRemoteResult,
                 onSubmit: onSubmit,
                 onCancel: onCancel,
                 submitText: submitText,
