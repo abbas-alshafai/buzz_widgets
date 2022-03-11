@@ -38,6 +38,8 @@ class Buzz {
         verticalSpace: theme.verticalSpace,
         onSubmit: onSubmit,
         onCancel: onCancel,
+        onSuccess: onSuccess,
+        onError: onError,
         submitText: submitText,
         cancelText: cancelText,
         errorMsg: errorMsg,

@@ -14,13 +14,14 @@ class BuzzFormWrapper extends StatelessWidget {
     this.formKey,
     this.onSubmit,
     this.onCancel,
+    this.onSuccess,
+    this.onError,
     this.submitText,
     this.cancelText,
     this.horizontalSpace,
     this.verticalSpace,
     this.errorMsg,
-    this.error,
-    this.onError,
+    this.errorColor,
     this.onResult,
     this.onRemoteResult,
   })  : children = children ?? const [],
@@ -30,9 +31,11 @@ class BuzzFormWrapper extends StatelessWidget {
   final Widget? submitWidget;
   final Key? formKey;
 
+  final VoidCallback? onSuccess;
+  final VoidCallback? onError;
+
   final String? errorMsg;
-  final Color? error;
-  final Color? onError;
+  final Color? errorColor;
 
   final VoidCallback? onSubmit;
   final VoidCallback? onCancel;
@@ -60,6 +63,7 @@ class BuzzFormWrapper extends StatelessWidget {
                 onRemoteResult: onRemoteResult,
                 onSubmit: onSubmit,
                 onCancel: onCancel,
+                onSuccess: ,
                 submitText: submitText,
                 cancelText: cancelText,
                 spaceBetween: horizontalSpace,
