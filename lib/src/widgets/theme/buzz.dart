@@ -46,7 +46,9 @@ class Buzz {
         errorMsg: errorMsg,
         onResult: onResult,
         onRemoteResult: onRemoteResult,
-        submitWidgetPadding: submitWidgetPadding,
+        errorColor: theme.error,
+        onErrorColor: theme.onError,
+        submitWidgetPadding: theme.scaffoldPadding,
 
       );
 }
