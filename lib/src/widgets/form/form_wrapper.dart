@@ -16,12 +16,19 @@ class BuzzFormWrapper extends StatelessWidget {
     this.cancelText,
     this.horizontalSpace,
     this.verticalSpace,
+    this.errorMsg,
+    this.error,
+    this.onError,
   })  : children = children ?? const [],
         super(key: key);
 
   final List<Widget> children;
   final Widget? submitWidget;
   final Key? formKey;
+
+  final String? errorMsg;
+  final Color? error;
+  final Color? onError;
 
   final VoidCallback? onSubmit;
   final VoidCallback? onCancel;

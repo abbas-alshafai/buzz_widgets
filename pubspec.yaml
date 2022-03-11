@@ -11,6 +11,15 @@ dependencies:
   flutter:
     sdk: flutter
 
+  buzz_result:
+    git:
+      ref: master
+      url: https://github.com/abbas-alshafai/buzz_result
+  buzz_utils:
+    git:
+      ref: master
+      url: https://github.com/abbas-alshafai/buzz_utils
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

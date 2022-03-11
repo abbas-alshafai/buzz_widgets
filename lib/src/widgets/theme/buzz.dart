@@ -18,9 +18,12 @@ class Buzz {
     Key? formKey,
     VoidCallback? onSubmit,
     VoidCallback? onCancel,
+    VoidCallback? onSuccess,
+    VoidCallback? onError,
     String? submitText,
     String? cancelText,
     double? spaceBetween,
+    String? errorMsg,
   }) =>
       BuzzFormWrapper(
         key: key,
@@ -33,5 +36,6 @@ class Buzz {
         onCancel: onCancel,
         submitText: submitText,
         cancelText: cancelText,
+        errorMsg: errorMsg,
       );
 }
