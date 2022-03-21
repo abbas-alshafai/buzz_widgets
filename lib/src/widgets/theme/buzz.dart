@@ -30,9 +30,11 @@ class Buzz {
     final GetValueCallback<Result>? onResult,
     final GetValueCallback<Future<Result>>? onRemoteResult,
     final SetValueCallback<BuildContext>? goto,
+    final BuildContext? scaffoldContext,
   }) =>
       BuzzFormWrapper(
         key: key,
+        scaffoldContext: scaffoldContext,
         children: children,
         goto: goto,
         submitWidget: submitWidget,

@@ -7,29 +7,31 @@ import 'package:flutter/material.dart';
 import '../../utils/widget_utils.dart';
 
 class BuzzFormWrapper extends StatelessWidget {
-  const BuzzFormWrapper(
-      {Key? key,
-      List<Widget>? children,
-      this.submitWidget,
-      this.formKey,
-      this.onSubmit,
-      this.onCancel,
-      this.onSuccess,
-      this.onError,
-      this.submitText,
-      this.cancelText,
-      this.horizontalSpace,
-      this.verticalSpace,
-      this.errorMsg,
-      this.errorColor,
-      this.onErrorColor,
-      this.onResult,
-      this.onRemoteResult,
-      this.submitWidgetPadding,
-      this.goto})
-      : children = children ?? const [],
+  const BuzzFormWrapper({
+    Key? key,
+    List<Widget>? children,
+    this.submitWidget,
+    this.formKey,
+    this.onSubmit,
+    this.onCancel,
+    this.onSuccess,
+    this.onError,
+    this.submitText,
+    this.cancelText,
+    this.horizontalSpace,
+    this.verticalSpace,
+    this.errorMsg,
+    this.errorColor,
+    this.onErrorColor,
+    this.onResult,
+    this.onRemoteResult,
+    this.submitWidgetPadding,
+    this.goto,
+    this.scaffoldContext,
+  })  : children = children ?? const [],
         super(key: key);
 
+  final BuildContext? scaffoldContext;
   final SetValueCallback<BuildContext>? goto;
 
   final List<Widget> children;
@@ -78,6 +80,7 @@ class BuzzFormWrapper extends StatelessWidget {
                 spaceBetween: horizontalSpace,
                 onErrorColor: onErrorColor,
                 errorColor: errorColor,
+                scaffoldContext: scaffoldContext,
               ));
 
     final form = BuzzForm(

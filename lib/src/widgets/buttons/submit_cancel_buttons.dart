@@ -20,8 +20,10 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
     this.errorColor,
     this.onErrorColor,
     this.goto,
+    this.scaffoldContext,
   }) : super(key: key);
 
+  final BuildContext? scaffoldContext;
   final SetValueCallback<BuildContext>? goto;
   final GetValueCallback<Result>? onResult;
   final GetValueCallback<Future<Result>>? onFutureResult;
@@ -67,6 +69,7 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
                             onErrorColor: onErrorColor,
                             errorColor: errorColor,
                             isError: result.hasFailed,
+                            scaffoldContext: scaffoldContext,
                           );
                         }
 
@@ -81,6 +84,7 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
                             onErrorColor: onErrorColor,
                             errorColor: errorColor,
                             isError: result.hasFailed,
+                            scaffoldContext: scaffoldContext,
                           );
                         }
                       }),

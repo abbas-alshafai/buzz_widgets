@@ -12,7 +12,8 @@ class BuzzSnackBarWrapper {
 
   handle(
     final Result result, {
-      final SetValueCallback<BuildContext>? goto,
+    final BuildContext? scaffoldContext,
+    final SetValueCallback<BuildContext>? goto,
     final String? errorMsg,
     final VoidCallback? onSuccess,
     final VoidCallback? onError,
@@ -20,13 +21,13 @@ class BuzzSnackBarWrapper {
     final Color? onErrorColor,
     final bool isError = false,
   }) {
-    if(result.isSuccessful){
-      if(onSuccess != null){
+    if (result.isSuccessful) {
+      if (onSuccess != null) {
         onSuccess();
       }
 
-      if(goto != null){
-        goto(_context);
+      if (goto != null) {
+        goto(scaffoldContext ?? _context);
       }
       return;
     }
@@ -44,7 +45,6 @@ class BuzzSnackBarWrapper {
     if (onError != null) {
       onError();
     }
-
   }
 }
 
