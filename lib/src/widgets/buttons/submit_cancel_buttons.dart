@@ -60,6 +60,7 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
                           final result = onResult!();
                           BuzzSnackBarWrapper.of(context).handle(
                             result,
+                            goto: goto,
                             onSuccess: onSuccess,
                             onError: onError,
                             errorMsg: errorMsg,
@@ -73,6 +74,7 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
                           final result = await onFutureResult!();
                           BuzzSnackBarWrapper.of(context).handle(
                             result,
+                            goto: goto,
                             onSuccess: onSuccess,
                             onError: onError,
                             errorMsg: errorMsg,
