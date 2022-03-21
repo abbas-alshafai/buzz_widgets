@@ -46,6 +46,24 @@ class BuzzSnackBarWrapper {
       onError();
     }
   }
+
+
+  show({
+        final String? msg,
+        final Color? errorColor,
+        final Color? onErrorColor,
+        final bool isError = false,
+      }) {
+
+    ScaffoldMessenger.of(_context).showSnackBar(
+      BuzzSnackBar(
+        msg: msg,
+        errorColor: errorColor,
+        onErrorColor: onErrorColor,
+        isError: isError,
+      ),
+    );
+  }
 }
 
 class BuzzSnackBar extends SnackBar {
