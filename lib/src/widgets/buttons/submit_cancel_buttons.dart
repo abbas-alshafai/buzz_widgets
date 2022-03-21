@@ -15,14 +15,16 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
     this.cancelText,
     this.spaceBetween,
     this.onResult,
-    this.onRemoteResult,
+    this.onFutureResult,
     this.errorMsg,
     this.errorColor,
     this.onErrorColor,
+    this.goto,
   }) : super(key: key);
 
+  final SetValueCallback<BuildContext>? goto;
   final GetValueCallback<Result>? onResult;
-  final GetValueCallback<Future<Result>>? onRemoteResult;
+  final GetValueCallback<Future<Result>>? onFutureResult;
   final VoidCallback? onSubmit;
   final VoidCallback? onCancel;
   final VoidCallback? onSuccess;
@@ -30,7 +32,6 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
   final String? submitText;
   final String? cancelText;
   final double? spaceBetween;
-
 
   final String? errorMsg;
   final Color? errorColor;
@@ -52,7 +53,7 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
           child: ElevatedButton(
             child: Text(submitText ?? 'Submit'),
             onPressed: onSubmit ??
-                ((onResult ?? onRemoteResult) == null
+                ((onResult ?? onFutureResult) == null
                     ? null
                     : () async {
                         if (onResult != null) {
@@ -66,8 +67,10 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
                             errorColor: errorColor,
                             isError: result.hasFailed,
                           );
-                        } else {
-                          final result = await onRemoteResult!();
+                        }
+
+                        if (onFutureResult != null) {
+                          final result = await onFutureResult!();
                           BuzzSnackBarWrapper.of(context).handle(
                             result,
                             onSuccess: onSuccess,

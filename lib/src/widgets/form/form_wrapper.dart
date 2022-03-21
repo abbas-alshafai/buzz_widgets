@@ -7,27 +7,30 @@ import 'package:flutter/material.dart';
 import '../../utils/widget_utils.dart';
 
 class BuzzFormWrapper extends StatelessWidget {
-  const BuzzFormWrapper({
-    Key? key,
-    List<Widget>? children,
-    this.submitWidget,
-    this.formKey,
-    this.onSubmit,
-    this.onCancel,
-    this.onSuccess,
-    this.onError,
-    this.submitText,
-    this.cancelText,
-    this.horizontalSpace,
-    this.verticalSpace,
-    this.errorMsg,
-    this.errorColor,
-    this.onErrorColor,
-    this.onResult,
-    this.onRemoteResult,
-    this.submitWidgetPadding,
-  })  : children = children ?? const [],
+  const BuzzFormWrapper(
+      {Key? key,
+      List<Widget>? children,
+      this.submitWidget,
+      this.formKey,
+      this.onSubmit,
+      this.onCancel,
+      this.onSuccess,
+      this.onError,
+      this.submitText,
+      this.cancelText,
+      this.horizontalSpace,
+      this.verticalSpace,
+      this.errorMsg,
+      this.errorColor,
+      this.onErrorColor,
+      this.onResult,
+      this.onRemoteResult,
+      this.submitWidgetPadding,
+      this.goto})
+      : children = children ?? const [],
         super(key: key);
+
+  final SetValueCallback<BuildContext>? goto;
 
   final List<Widget> children;
   final Widget? submitWidget;
@@ -64,8 +67,9 @@ class BuzzFormWrapper extends StatelessWidget {
         (isEmptySubmit
             ? null
             : BuzzSubmitCancelButtons(
+                goto: goto,
                 onResult: onResult,
-                onRemoteResult: onRemoteResult,
+                onFutureResult: onRemoteResult,
                 onSubmit: onSubmit,
                 onCancel: onCancel,
                 onSuccess: onSuccess,

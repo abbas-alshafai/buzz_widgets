@@ -1,4 +1,5 @@
 import 'package:buzz_result/models/result.dart';
+import 'package:buzz_utils/buzz_utils.dart';
 import 'package:flutter/material.dart';
 
 class BuzzSnackBarWrapper {
@@ -11,6 +12,7 @@ class BuzzSnackBarWrapper {
 
   handle(
     final Result result, {
+      final SetValueCallback<BuildContext>? goto,
     final String? errorMsg,
     final VoidCallback? onSuccess,
     final VoidCallback? onError,
@@ -18,23 +20,31 @@ class BuzzSnackBarWrapper {
     final Color? onErrorColor,
     final bool isError = false,
   }) {
-    if (result.hasFailed) {
-      ScaffoldMessenger.of(_context).showSnackBar(
-        BuzzSnackBar(
-          msg: errorMsg ?? 'An error has occurred.',
-          errorColor: errorColor,
-          onErrorColor: onErrorColor,
-          isError: isError,
-        ),
-      );
-      if (onError != null) {
-        onError();
-      }
-    } else {
-      if (onSuccess != null) {
+    if(result.isSuccessful){
+      if(onSuccess != null){
         onSuccess();
       }
+
+      if(goto != null){
+        goto(_context);
+      }
+      return;
     }
+
+    // result failed
+    ScaffoldMessenger.of(_context).showSnackBar(
+      BuzzSnackBar(
+        msg: errorMsg ?? 'An error has occurred.',
+        errorColor: errorColor,
+        onErrorColor: onErrorColor,
+        isError: isError,
+      ),
+    );
+
+    if (onError != null) {
+      onError();
+    }
+
   }
 }
 

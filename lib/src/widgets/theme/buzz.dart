@@ -29,10 +29,12 @@ class Buzz {
     final String? errorMsg,
     final GetValueCallback<Result>? onResult,
     final GetValueCallback<Future<Result>>? onRemoteResult,
+    final SetValueCallback<BuildContext>? goto,
   }) =>
       BuzzFormWrapper(
         key: key,
         children: children,
+        goto: goto,
         submitWidget: submitWidget,
         formKey: formKey,
         horizontalSpace: theme.horizontalSpace,
@@ -49,6 +51,5 @@ class Buzz {
         errorColor: theme.error,
         onErrorColor: theme.onError,
         submitWidgetPadding: theme.scaffoldPadding,
-
       );
 }
