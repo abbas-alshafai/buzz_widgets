@@ -1,14 +1,20 @@
 import 'package:buzz_result/models/result.dart';
 import 'package:buzz_utils/buzz_utils.dart';
 import 'package:buzz_widgets/buzz_widgets.dart';
+import 'package:buzz_widgets/src/utils/actions.dart';
 import 'package:flutter/material.dart';
 
 class Buzz {
   final BuzzTheme theme;
+  final BuzzActions? actions;
 
-  Buzz._(this.theme);
+  Buzz._(this.theme, {this.actions});
 
-  factory Buzz.of(final BuzzTheme theme) => Buzz._(theme);
+  factory Buzz.of(
+    final BuzzTheme theme, {
+    final BuzzActions? actions,
+  }) =>
+      Buzz._(theme, actions: actions);
 
   showSnackbar(final BuildContext context, final String msg) =>
       BuzzSnackBarWrapper.of(context).show(msg: msg);
@@ -47,7 +53,9 @@ class Buzz {
         horizontalSpace: theme.horizontalSpace,
         verticalSpace: theme.verticalSpace,
         onSubmit: onSubmit,
-        onCancel: onCancel,
+        onCancel: actions?.defaultActions == true
+            ? onCancel ?? actions?.onCancel
+            : onCancel,
         onSuccess: onSuccess,
         onError: onError,
         submitText: submitText,
