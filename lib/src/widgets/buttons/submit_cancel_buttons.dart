@@ -19,12 +19,8 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
     this.errorMsg,
     this.errorColor,
     this.onErrorColor,
-    this.goto,
-    this.scaffoldContext,
   }) : super(key: key);
 
-  final BuildContext? scaffoldContext;
-  final SetValueCallback<BuildContext>? goto;
   final GetValueCallback<Result>? onResult;
   final GetValueCallback<Future<Result>>? onFutureResult;
   final VoidCallback? onSubmit;
@@ -62,14 +58,12 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
                           final result = onResult!();
                           BuzzSnackBarWrapper.of(context).handle(
                             result,
-                            goto: goto,
                             onSuccess: onSuccess,
                             onError: onError,
                             errorMsg: errorMsg,
                             onErrorColor: onErrorColor,
-                            errorColor: errorColor,
+                            backgroundColor: errorColor,
                             isError: result.hasFailed,
-                            scaffoldContext: scaffoldContext,
                           );
                         }
 
@@ -77,14 +71,12 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
                           final result = await onFutureResult!();
                           BuzzSnackBarWrapper.of(context).handle(
                             result,
-                            goto: goto,
                             onSuccess: onSuccess,
                             onError: onError,
                             errorMsg: errorMsg,
                             onErrorColor: onErrorColor,
-                            errorColor: errorColor,
+                            backgroundColor: errorColor,
                             isError: result.hasFailed,
-                            scaffoldContext: scaffoldContext,
                           );
                         }
                       }),

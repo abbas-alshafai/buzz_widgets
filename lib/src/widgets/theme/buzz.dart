@@ -1,9 +1,6 @@
 import 'package:buzz_result/models/result.dart';
 import 'package:buzz_utils/buzz_utils.dart';
 import 'package:buzz_widgets/buzz_widgets.dart';
-import 'package:buzz_widgets/src/widgets/buttons/submit_cancel_buttons.dart';
-import 'package:buzz_widgets/src/widgets/form/form_wrapper.dart';
-import 'package:buzz_widgets/src/widgets/theme/buzz_theme.dart';
 import 'package:flutter/material.dart';
 
 class Buzz {
@@ -12,6 +9,16 @@ class Buzz {
   Buzz._(this.theme);
 
   factory Buzz.of(final BuzzTheme theme) => Buzz._(theme);
+
+  showSnackbar(final BuildContext context, final String msg) =>
+      BuzzSnackBarWrapper.of(context).show(msg: msg);
+
+  showErrorSnackbar(final BuildContext context, final String msg) =>
+      BuzzSnackBarWrapper.of(context).show(
+        msg: msg,
+        backgroundColor: theme.error,
+        textColor: theme.onError,
+      );
 
   Widget formWrapper({
     final Key? key,
@@ -24,8 +31,6 @@ class Buzz {
     final VoidCallback? onError,
     final String? submitText,
     final String? cancelText,
-    final double? spaceBetween,
-    final double? submitWidgetPadding,
     final String? errorMsg,
     final GetValueCallback<Result>? onResult,
     final GetValueCallback<Future<Result>>? onRemoteResult,

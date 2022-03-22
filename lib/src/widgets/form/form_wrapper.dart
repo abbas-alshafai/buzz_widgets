@@ -69,7 +69,6 @@ class BuzzFormWrapper extends StatelessWidget {
         (isEmptySubmit
             ? null
             : BuzzSubmitCancelButtons(
-                goto: goto,
                 onResult: onResult,
                 onFutureResult: onRemoteResult,
                 onSubmit: onSubmit,
@@ -80,7 +79,6 @@ class BuzzFormWrapper extends StatelessWidget {
                 spaceBetween: horizontalSpace,
                 onErrorColor: onErrorColor,
                 errorColor: errorColor,
-                scaffoldContext: scaffoldContext,
               ));
 
     final form = BuzzForm(

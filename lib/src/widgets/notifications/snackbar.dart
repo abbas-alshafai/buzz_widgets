@@ -17,7 +17,7 @@ class BuzzSnackBarWrapper {
     final String? errorMsg,
     final VoidCallback? onSuccess,
     final VoidCallback? onError,
-    final Color? errorColor,
+    final Color? backgroundColor,
     final Color? onErrorColor,
     final bool isError = false,
   }) {
@@ -36,9 +36,8 @@ class BuzzSnackBarWrapper {
     ScaffoldMessenger.of(_context).showSnackBar(
       BuzzSnackBar(
         msg: errorMsg ?? 'An error has occurred.',
-        errorColor: errorColor,
-        onErrorColor: onErrorColor,
-        isError: isError,
+        backgroundColor: backgroundColor,
+        textColor: onErrorColor,
       ),
     );
 
@@ -47,20 +46,16 @@ class BuzzSnackBarWrapper {
     }
   }
 
-
   show({
-        final String? msg,
-        final Color? errorColor,
-        final Color? onErrorColor,
-        final bool isError = false,
-      }) {
-
+    final String? msg,
+    final Color? backgroundColor,
+    final Color? textColor,
+  }) {
     ScaffoldMessenger.of(_context).showSnackBar(
       BuzzSnackBar(
         msg: msg,
-        errorColor: errorColor,
-        onErrorColor: onErrorColor,
-        isError: isError,
+        backgroundColor: backgroundColor,
+        textColor: textColor,
       ),
     );
   }
@@ -70,17 +65,14 @@ class BuzzSnackBar extends SnackBar {
   BuzzSnackBar({
     final Key? key,
     final String? msg,
-    final bool isError = true,
-    final Color? errorColor,
-    final Color? onErrorColor,
+    final Color? backgroundColor,
+    final Color? textColor,
   }) : super(
           key: key,
           content: Text(
             msg ?? '',
-            style: const TextStyle().copyWith(
-              color: isError ? onErrorColor : null,
-            ),
+            style: const TextStyle().copyWith(color: textColor),
           ),
-          backgroundColor: isError ? errorColor : null,
+          backgroundColor: backgroundColor,
         );
 }
