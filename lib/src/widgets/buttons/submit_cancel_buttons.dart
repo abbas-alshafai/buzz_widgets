@@ -15,14 +15,14 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
     this.cancelText,
     this.spaceBetween,
     this.onResult,
-    this.onFutureResult,
+    this.onResultAsync,
     this.errorMsg,
     this.errorColor,
     this.onErrorColor,
   }) : super(key: key);
 
   final GetValueCallback<Result>? onResult;
-  final GetValueCallback<Future<Result>>? onFutureResult;
+  final GetValueCallback<Future<Result>>? onResultAsync;
   final VoidCallback? onSubmit;
   final VoidCallback? onCancel;
   final VoidCallback? onSuccess;
@@ -41,33 +41,31 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
     final submitWidget = ElevatedButton(
       child: Text(submitText ?? 'Submit'),
       onPressed: onSubmit ??
-          ((onResult ?? onFutureResult) == null
+          ((onResult ?? onResultAsync) == null
               ? null
               : () async {
+                  Result syncResult = Result.success();
                   if (onResult != null) {
-                    final result = onResult!();
-                    BuzzSnackBarWrapper.of(context).handle(
-                      result,
-                      onSuccess: onSuccess,
-                      onError: onError,
-                      errorMsg: errorMsg,
-                      onErrorColor: onErrorColor,
-                      backgroundColor: errorColor,
-                      isError: result.hasFailed,
+                    syncResult = onResult!();
+                  }
+
+                  Result asyncResult = Result.success();
+                  if (onResultAsync != null) {
+                    asyncResult = await onResultAsync!();
+                  }
+
+                  if(syncResult.hasFailed || asyncResult.hasFailed){
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      BuzzSnackBar(
+                        msg: errorMsg ?? 'An error has occurred.',
+                        backgroundColor: errorColor,
+                        textColor: onErrorColor,
+                      ),
                     );
                   }
 
-                  if (onFutureResult != null) {
-                    final result = await onFutureResult!();
-                    BuzzSnackBarWrapper.of(context).handle(
-                      result,
-                      onSuccess: onSuccess,
-                      onError: onError,
-                      errorMsg: errorMsg,
-                      onErrorColor: onErrorColor,
-                      backgroundColor: errorColor,
-                      isError: result.hasFailed,
-                    );
+                  if (onError != null) {
+                    onError!();
                   }
                 }),
     );

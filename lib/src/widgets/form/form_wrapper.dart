@@ -70,7 +70,7 @@ class BuzzFormWrapper extends StatelessWidget {
             ? null
             : BuzzSubmitCancelButtons(
                 onResult: onResult,
-                onFutureResult: onRemoteResult,
+                onResultAsync: onRemoteResult,
                 onSubmit: onSubmit,
                 onCancel: onCancel,
                 onSuccess: onSuccess,

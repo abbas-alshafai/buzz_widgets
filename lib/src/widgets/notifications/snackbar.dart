@@ -10,10 +10,11 @@ class BuzzSnackBarWrapper {
   factory BuzzSnackBarWrapper.of(final BuildContext context) =>
       BuzzSnackBarWrapper._(context);
 
+  @deprecated
   handle(
-    final Result result, {
+    final Result result,
+      {
     final BuildContext? scaffoldContext,
-    final SetValueCallback<BuildContext>? goto,
     final String? errorMsg,
     final VoidCallback? onSuccess,
     final VoidCallback? onError,
@@ -26,9 +27,6 @@ class BuzzSnackBarWrapper {
         onSuccess();
       }
 
-      if (goto != null) {
-        goto(scaffoldContext ?? _context);
-      }
       return;
     }
 
