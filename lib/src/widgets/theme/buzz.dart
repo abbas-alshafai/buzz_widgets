@@ -68,4 +68,15 @@ class Buzz {
         submitWidgetPadding: theme.scaffoldPadding,
         submitWidgetHeight: submitWidgetHeight ?? theme.mainButtonHeight,
       );
+
+  List<Widget> spacedChildren(
+    final List<Widget> children, {
+    final bool isHorizontal = false,
+        final double? space,
+  }) =>
+      BuzzWidgetUtils.addSpaces(
+        children: children,
+        vertical: isHorizontal ? null : space ?? theme.verticalSpace,
+        horizontal: isHorizontal ? space ?? theme.horizontalSpace : null,
+      );
 }

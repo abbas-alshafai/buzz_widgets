@@ -18,7 +18,7 @@ class BuzzTheme {
     this.horizontalSpace = 16,
     this.verticalSpace = 8,
     this.scaffoldPadding = 8,
-    this.mainButtonHeight = 32,
+    this.mainButtonHeight = 48,
     this.error,
     this.onError,
   });
