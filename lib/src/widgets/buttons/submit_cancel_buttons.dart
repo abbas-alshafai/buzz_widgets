@@ -37,7 +37,6 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final submitWidget = ElevatedButton(
       child: Text(submitText ?? 'Submit'),
       onPressed: onSubmit ??
@@ -54,7 +53,7 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
                     asyncResult = await onResultAsync!();
                   }
 
-                  if(syncResult.hasFailed || asyncResult.hasFailed){
+                  if (syncResult.hasFailed || asyncResult.hasFailed) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       BuzzSnackBar(
                         msg: errorMsg ?? 'An error has occurred.',
@@ -65,28 +64,26 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
                     if (onError != null) {
                       onError!();
                     }
-                  } else{
-                    if(onSuccess != null) {
+                  } else {
+                    if (onSuccess != null) {
                       onSuccess!();
                     }
                   }
                 }),
     );
 
-    if(onCancel == null) {
-      return submitWidget;
-    }
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Expanded(
-          child: TextButton(
-            child: Text(cancelText ?? 'Cancel'),
-            onPressed: onCancel,
+        if (onCancel != null) ...[
+          Expanded(
+            child: TextButton(
+              child: Text(cancelText ?? 'Cancel'),
+              onPressed: onCancel,
+            ),
           ),
-        ),
-        SizedBox(width: spaceBetween ?? 16),
+          SizedBox(width: spaceBetween ?? 16),
+        ],
         Expanded(child: submitWidget),
       ],
     );

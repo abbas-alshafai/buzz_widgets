@@ -1,5 +1,4 @@
 import 'package:buzz_result/models/result.dart';
-import 'package:buzz_utils/buzz_utils.dart';
 import 'package:flutter/material.dart';
 
 class BuzzSnackBarWrapper {
@@ -10,7 +9,7 @@ class BuzzSnackBarWrapper {
   factory BuzzSnackBarWrapper.of(final BuildContext context) =>
       BuzzSnackBarWrapper._(context);
 
-  @deprecated
+  @Deprecated('Handle result in the parent widget')
   handle(
     final Result result,
       {
