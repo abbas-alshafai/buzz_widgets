@@ -3,6 +3,8 @@ import 'package:buzz_utils/buzz_utils.dart';
 import 'package:flutter/material.dart';
 
 import '../notifications/snackbar.dart';
+import 'buzz_elevated_button.dart';
+import 'buzz_text_button.dart';
 
 class BuzzSubmitCancelButtons extends StatelessWidget {
   const BuzzSubmitCancelButtons({
@@ -19,6 +21,7 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
     this.errorMsg,
     this.errorColor,
     this.onErrorColor,
+    this.height,
   }) : super(key: key);
 
   final GetValueCallback<Result>? onResult;
@@ -35,10 +38,13 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
   final Color? errorColor;
   final Color? onErrorColor;
 
+  final double? height;
+
   @override
   Widget build(BuildContext context) {
-    final submitWidget = ElevatedButton(
-      child: Text(submitText ?? 'Submit'),
+    final submitWidget = BuzzElevatedButton(
+      text: submitText ?? 'Submit',
+      height: height,
       onPressed: onSubmit ??
           ((onResult ?? onResultAsync) == null
               ? null
@@ -77,9 +83,10 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
       children: [
         if (onCancel != null) ...[
           Expanded(
-            child: TextButton(
-              child: Text(cancelText ?? 'Cancel'),
+            child: BuzzTextButton(
+              text: cancelText ?? 'Cancel',
               onPressed: onCancel,
+              height: height,
             ),
           ),
           SizedBox(width: spaceBetween ?? 16),

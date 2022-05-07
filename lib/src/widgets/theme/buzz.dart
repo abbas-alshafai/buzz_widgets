@@ -29,6 +29,7 @@ class Buzz {
     final Key? key,
     final List<Widget>? children = const [],
     final Widget? submitWidget,
+    final double? submitWidgetHeight,
     final Key? formKey,
     final VoidCallback? onSubmit,
     final VoidCallback? onCancel,
@@ -65,5 +66,6 @@ class Buzz {
         errorColor: theme.error,
         onErrorColor: theme.onError,
         submitWidgetPadding: theme.scaffoldPadding,
+        submitWidgetHeight: submitWidgetHeight ?? theme.mainButtonHeight,
       );
 }
