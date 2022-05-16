@@ -37,7 +37,7 @@ class BuzzFormWrapper extends StatelessWidget {
 
   final List<Widget> children;
   final Widget? submitWidget;
-  final Key? formKey;
+  final GlobalKey<FormState>? formKey;
 
   final VoidCallback? onSuccess;
   final VoidCallback? onError;
@@ -82,6 +82,7 @@ class BuzzFormWrapper extends StatelessWidget {
                 onErrorColor: onErrorColor,
                 errorColor: errorColor,
                 height: submitWidgetHeight,
+          formKey: formKey,
               ));
 
     final form = BuzzForm(

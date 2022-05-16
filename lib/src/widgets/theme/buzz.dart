@@ -30,7 +30,7 @@ class Buzz {
     final List<Widget>? children = const [],
     final Widget? submitWidget,
     final double? submitWidgetHeight,
-    final Key? formKey,
+    final GlobalKey<FormState>? formKey,
     final VoidCallback? onSubmit,
     final VoidCallback? onCancel,
     final VoidCallback? onSuccess,

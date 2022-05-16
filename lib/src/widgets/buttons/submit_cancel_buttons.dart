@@ -22,6 +22,7 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
     this.errorColor,
     this.onErrorColor,
     this.height,
+    this.formKey,
   }) : super(key: key);
 
   final GetValueCallback<Result>? onResult;
@@ -39,6 +40,7 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
   final Color? onErrorColor;
 
   final double? height;
+  final GlobalKey<FormState>? formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,10 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
           ((onResult ?? onResultAsync) == null
               ? null
               : () async {
+                  // if invalid
+                  if (!(formKey?.currentState?.validate() == true)) {
+                    return;
+                  }
                   Result syncResult = Result.success();
                   if (onResult != null) {
                     syncResult = onResult!();
