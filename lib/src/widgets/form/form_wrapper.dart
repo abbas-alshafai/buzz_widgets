@@ -29,6 +29,7 @@ class BuzzFormWrapper extends StatelessWidget {
     this.submitWidgetHeight,
     this.goto,
     this.scaffoldContext,
+    this.getErrors,
   })  : children = children ?? const [],
         super(key: key);
 
@@ -58,6 +59,7 @@ class BuzzFormWrapper extends StatelessWidget {
 
   final GetValueCallback<Result>? onResult;
   final GetValueCallback<Future<Result>>? onRemoteResult;
+  final GetValueCallback<List<String>>? getErrors;
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +84,8 @@ class BuzzFormWrapper extends StatelessWidget {
                 onErrorColor: onErrorColor,
                 errorColor: errorColor,
                 height: submitWidgetHeight,
-          formKey: formKey,
+                getErrors: getErrors,
+                formKey: formKey,
               ));
 
     final form = BuzzForm(

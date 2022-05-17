@@ -42,6 +42,7 @@ class Buzz {
     final GetValueCallback<Future<Result>>? onRemoteResult,
     final SetValueCallback<BuildContext>? goto,
     final BuildContext? scaffoldContext,
+    final GetValueCallback<List<String>>? getErrors,
   }) =>
       BuzzFormWrapper(
         key: key,
@@ -50,6 +51,7 @@ class Buzz {
         goto: goto,
         submitWidget: submitWidget,
         formKey: formKey,
+        getErrors: getErrors,
         horizontalSpace: theme.horizontalSpace,
         verticalSpace: theme.verticalSpace,
         onSubmit: onSubmit,

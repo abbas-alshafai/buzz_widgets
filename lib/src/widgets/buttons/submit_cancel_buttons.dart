@@ -23,6 +23,7 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
     this.onErrorColor,
     this.height,
     this.formKey,
+    this.getErrors,
   }) : super(key: key);
 
   final GetValueCallback<Result>? onResult;
@@ -41,6 +42,7 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
 
   final double? height;
   final GlobalKey<FormState>? formKey;
+  final GetValueCallback<List<String>>? getErrors;
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +53,16 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
           ((onResult ?? onResultAsync) == null
               ? null
               : () async {
+                  final List<String> errors = getErrors == null ? [] : getErrors!();
                   // if invalid
-                  if (!(formKey?.currentState?.validate() == true)) {
+                  if (!(formKey?.currentState?.validate() == true) || ListUtils.instance.isNotEmpty(errors)) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      BuzzSnackBar(
+                        msg: errors.first ?? 'An error has occurred.',
+                        backgroundColor: errorColor,
+                        textColor: onErrorColor,
+                      ),
+                    );
                     return;
                   }
                   Result syncResult = Result.success();
