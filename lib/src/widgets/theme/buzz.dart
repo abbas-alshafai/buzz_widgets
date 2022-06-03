@@ -5,15 +5,10 @@ import 'package:flutter/material.dart';
 
 class Buzz {
   final BuzzTheme theme;
-  final BuzzActions? actions;
 
-  Buzz._(this.theme, {this.actions});
+  Buzz._(this.theme);
 
-  factory Buzz.of(
-    final BuzzTheme theme, {
-    final BuzzActions? actions,
-  }) =>
-      Buzz._(theme, actions: actions);
+  factory Buzz.of(final BuzzTheme theme) => Buzz._(theme);
 
   showSnackbar(final BuildContext context, final String msg) =>
       BuzzSnackBarWrapper.of(context).show(msg: msg);
@@ -40,7 +35,6 @@ class Buzz {
     final String? errorMsg,
     final GetValueCallback<Result>? onResult,
     final GetValueCallback<Future<Result>>? onRemoteResult,
-    final SetValueCallback<BuildContext>? goto,
     final BuildContext? scaffoldContext,
     final GetValueCallback<List<String>>? getErrors,
   }) =>
@@ -48,16 +42,13 @@ class Buzz {
         key: key,
         scaffoldContext: scaffoldContext,
         children: children,
-        goto: goto,
         submitWidget: submitWidget,
         formKey: formKey,
         getErrors: getErrors,
         horizontalSpace: theme.horizontalSpace,
         verticalSpace: theme.verticalSpace,
         onSubmit: onSubmit,
-        onCancel: actions?.defaultActions == true
-            ? onCancel ?? actions?.onCancel
-            : onCancel,
+        onCancel:onCancel,
         onSuccess: onSuccess,
         onError: onError,
         submitText: submitText,
@@ -74,7 +65,7 @@ class Buzz {
   List<Widget> spacedChildren(
     final List<Widget> children, {
     final bool isHorizontal = false,
-        final double? space,
+    final double? space,
   }) =>
       BuzzWidgetUtils.addSpaces(
         children: children,

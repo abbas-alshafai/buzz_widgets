@@ -27,14 +27,12 @@ class BuzzFormWrapper extends StatelessWidget {
     this.onRemoteResult,
     this.submitWidgetPadding,
     this.submitWidgetHeight,
-    this.goto,
     this.scaffoldContext,
     this.getErrors,
   })  : children = children ?? const [],
         super(key: key);
 
   final BuildContext? scaffoldContext;
-  final SetValueCallback<BuildContext>? goto;
 
   final List<Widget> children;
   final Widget? submitWidget;
