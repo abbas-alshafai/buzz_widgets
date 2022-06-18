@@ -22,6 +22,7 @@ class Buzz {
 
   Widget formWrapper({
     final Key? key,
+    final Widget? child,
     final List<Widget>? children = const [],
     final Widget? submitWidget,
     final double? submitWidgetHeight,
@@ -37,10 +38,12 @@ class Buzz {
     final GetValueCallback<Future<Result>>? onRemoteResult,
     final BuildContext? scaffoldContext,
     final GetValueCallback<List<String>>? getErrors,
+    final bool isLoading = false,
   }) =>
       BuzzFormWrapper(
         key: key,
         scaffoldContext: scaffoldContext,
+        child: child,
         children: children,
         submitWidget: submitWidget,
         formKey: formKey,
@@ -60,6 +63,8 @@ class Buzz {
         onErrorColor: theme.onError,
         submitWidgetPadding: theme.scaffoldPadding,
         submitWidgetHeight: submitWidgetHeight ?? theme.mainButtonHeight,
+        isLoading: isLoading,
+        loadingWidget: theme.loadingWidget,
       );
 
   List<Widget> spacedChildren(

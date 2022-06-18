@@ -9,7 +9,8 @@ import '../../utils/widget_utils.dart';
 class BuzzFormWrapper extends StatelessWidget {
   const BuzzFormWrapper({
     Key? key,
-    List<Widget>? children,
+    final this.child,
+    final this.children,
     this.submitWidget,
     this.formKey,
     this.onSubmit,
@@ -29,12 +30,17 @@ class BuzzFormWrapper extends StatelessWidget {
     this.submitWidgetHeight,
     this.scaffoldContext,
     this.getErrors,
-  })  : children = children ?? const [],
-        super(key: key);
+    this.isLoading = false,
+    this.loadingWidget,
+  }) : super(key: key);
 
   final BuildContext? scaffoldContext;
 
-  final List<Widget> children;
+  final bool isLoading;
+  final Widget? loadingWidget;
+
+  final Widget? child;
+  final List<Widget>? children;
   final Widget? submitWidget;
   final GlobalKey<FormState>? formKey;
 
@@ -70,24 +76,27 @@ class BuzzFormWrapper extends StatelessWidget {
     final _submitWidget = submitWidget ??
         (isEmptySubmit
             ? null
-            : BuzzSubmitCancelButtons(
-                onResult: onResult,
-                onResultAsync: onRemoteResult,
-                onSubmit: onSubmit,
-                onCancel: onCancel,
-                onSuccess: onSuccess,
-                submitText: submitText,
-                cancelText: cancelText,
-                spaceBetween: horizontalSpace,
-                onErrorColor: onErrorColor,
-                errorColor: errorColor,
-                height: submitWidgetHeight,
-                getErrors: getErrors,
-                formKey: formKey,
-              ));
+            : isLoading
+                ? loadingWidget
+                : BuzzSubmitCancelButtons(
+                    onResult: onResult,
+                    onResultAsync: onRemoteResult,
+                    onSubmit: onSubmit,
+                    onCancel: onCancel,
+                    onSuccess: onSuccess,
+                    submitText: submitText,
+                    cancelText: cancelText,
+                    spaceBetween: horizontalSpace,
+                    onErrorColor: onErrorColor,
+                    errorColor: errorColor,
+                    height: submitWidgetHeight,
+                    getErrors: getErrors,
+                    formKey: formKey,
+                  ));
 
     final form = BuzzForm(
       formKey: formKey,
+      child: child,
       children: BuzzWidgetUtils.addSpaces(
         vertical: verticalSpace,
         children: children,

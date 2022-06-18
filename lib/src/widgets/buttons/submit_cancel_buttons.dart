@@ -77,9 +77,10 @@ class BuzzSubmitCancelButtons extends StatelessWidget {
                   }
 
                   if (syncResult.hasFailed || asyncResult.hasFailed) {
+                    final msg = syncResult.log?.msg ?? asyncResult.log?.msg;
                     ScaffoldMessenger.of(context).showSnackBar(
                       BuzzSnackBar(
-                        msg: errorMsg ?? 'An error has occurred.',
+                        msg: errorMsg ?? (msg ?? 'An error has occurred.'),
                         backgroundColor: errorColor,
                         textColor: onErrorColor,
                       ),

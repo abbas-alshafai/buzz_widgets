@@ -6,13 +6,14 @@ import 'package:flutter/material.dart';
 /// 3- Expand form fields and make them scrollable.
 class BuzzForm extends StatelessWidget {
   const BuzzForm({
-    Key? key,
-    List<Widget>? children,
+    final Key? key,
+    final this.child,
+    final this.children,
     this.formKey,
-  }) : children = children ?? const [],
-        super(key: key);
+  }) : super(key: key);
 
-  final List<Widget> children;
+  final Widget? child;
+  final List<Widget>? children;
   final Key? formKey;
 
   @override
@@ -20,7 +21,7 @@ class BuzzForm extends StatelessWidget {
     return GestureDetector(
       child: Form(
         key: formKey,
-        child: ListView(children: children),
+        child: child ?? ListView(children: children ?? []),
       ),
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BuzzTheme {
+
   final double? verticalSpace;
   final double? horizontalSpace;
 
@@ -14,12 +15,25 @@ class BuzzTheme {
   // buttons
   final double mainButtonHeight;
 
+  // widgets
+  final Widget loadingWidget;
+
   BuzzTheme({
-    this.horizontalSpace = 16,
-    this.verticalSpace = 8,
-    this.scaffoldPadding = 8,
-    this.mainButtonHeight = 48,
-    this.error,
-    this.onError,
-  });
+    final this.horizontalSpace = 16,
+    final this.verticalSpace = 8,
+    final this.scaffoldPadding = 8,
+    final this.mainButtonHeight = 48,
+    final this.error,
+    final this.onError,
+    final Widget? loadingWidget,
+  }) : loadingWidget = loadingWidget ?? const CircularProgressIndicator();
+}
+
+class X extends StatelessWidget {
+  const X({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
 }

@@ -1,6 +1,6 @@
 name: buzz_widgets
 description: buzz widgets are utility ui components to minimize duplication.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/abbas-alshafai/buzz_widgets
 
 environment:
